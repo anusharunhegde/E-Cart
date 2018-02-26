@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<style type="text/css">
+		body{
+			background: #F1F3F6;
+		}
+		
+	</style>
+</head>
+<body>
+
+	<% include partials/navbar.ejs %>
+	
+	<div class="container">
+		<div class="row" style="margin-top: 50px;">
+
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-12" >
+						<div style="background: #FFFFFF;">
+							<div class="text-center">
+								<img  src="https://encrypted-tbn0.gstatic.com/es?q=tbn:ANd9GcSRVHDcecZL5PCgc34Gy4qm5ePjfa5672NktxrjQh9cgJvo2ont" height="50">
+							</div>
+
+							<h1 class="text-center">Hi, <span><%= user.firstName%></span></h1>
+						</div>
+					</div>
+				</div>
+
+				<div style="height: 10px;"><span style="display: none">just insert some gap</span></div>
+
+				<div class="row">
+					<div class="col-xs-12" >
+						<div style="background: #FFFFFF;">
+						
+							<div class="panel">
+								<div class="panel-heading text-center"><h4><span><i class="fas fa-user"></i></span> Account Details</h4></div>
+
+								<div class="panel-body">
+									<ul class="list-group">
+
+										<li class="list-group-item"><span><b>Email:</b></span> <%= user.email %></li>
+										<li class="list-group-item"><span><b>Mob:</b></span> <%= user.mobileNumber %></li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-8" style="background: #FFFFFF;margin-bottom: 120px;">
+				
+				
+				<% if(user.cart.length!=0){%>
+				<div >
+				   <h4>My Cart (<span><%=user.cart.length%></span>)</h4><hr>
+
+				   <% user.cart.forEach(function(item){%>
+
+				   <div class="row">
+
+				   		<div class="col-xs-4 " style="margin-top: 30px;">
+				   			<div><h5 style="color: blue"><%= item.productName%></h5></div>
+				   			<div><h5><%= item.description%></h5></div>
+				   			<div><h4>$ <%= item.price%></h4></div>
+				   		
+				   		</div>
+
+				   		<!-- delete button -->
+				   		<div class="col-xs-2 pull-right" style="margin-top: 50px">
+				   			<div>
+				   				<a href="http://localhost:4000/big/cartremove/<%=item._id%>" class="btn"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+				   			</div>
+				   		</div>
+
+
+				   </div><hr><!-- end of row -->
+
+				  
+
+				
+			
+
+		
+				 <% }) <!-- end of for each loop -->
+
+			 } else {%>
+
+				<div class="text-center" style="padding: 30px;">
+				   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWD2B7w0Qirk6-QTezfwW5PhDJhrG-N3melDll0m-LdltWqfRZCw">
+				 </div>
+
+				<% } %>
+			</div>
+		</div>	
+		</div>
+		
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+</body>
+</html>

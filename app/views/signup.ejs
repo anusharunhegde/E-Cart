@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+  
+	
+ <div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+
+                        <div class="panel-title">Sign In</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">
+                            <a href="http://localhost:4000/big/forgotPassword">Forgot password?</a>
+                        </div>
+
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                       
+                            
+                        <form class="form-horizontal" role="form" action="http://localhost:4000/big/login" method="post">
+                                    
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="email">                                        
+                                    </div>
+                                
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                    </div>
+                                    
+
+                                
+                     
+
+                                <div style="margin-top:10px" class="form-group">
+                                    
+
+                                    <div class="col-sm-12 controls">
+                                      <button type="submit" class="btn btn-success" >Login </button>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            Don't have an account! 
+                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                            Sign Up Here
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </form>     
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+                    <div class="panel panel-info">
+
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                        </div>  
+
+                        <div class="panel-body" >
+
+                            <form class="form-horizontal" action="http://localhost:4000/big/signup" method="post" >
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                
+                                  
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" required="">
+                                 </div>
+
+                                <div class="form-group">
+                                     <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                     <input type="text" class="form-control" name="mobileNumber" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email address:</label>
+                                    <input type="text" class="form-control" name="email" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" class="form-control" name="password" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                    </div>
+                                </div>
+                                         
+                                
+                                
+                            </form>
+                         </div>
+                    </div>
+
+               
+               
+                
+         </div> 
+    </div>
+    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+</body>
+</html>

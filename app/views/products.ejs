@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<style type="text/css">
+		body{
+			background: #F1F3F6;
+		}
+		
+	</style>
+</head>
+<body>
+
+	<% include partials/navbar.ejs %>
+	
+	<div class="container">
+		<div class="row" style="margin-top: 50px;">
+
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-12" >
+						<div style="background: #FFFFFF;">
+							<div class="text-center">
+								<img  src="https://encrypted-tbn0.gstatic.com/es?q=tbn:ANd9GcSRVHDcecZL5PCgc34Gy4qm5ePjfa5672NktxrjQh9cgJvo2ont" height="50">
+							</div>
+
+							<h1 class="text-center">Hi, <span><%= user.firstName%></span></h1>
+						</div>
+					</div>
+				</div>
+
+				<div style="height: 10px;"><span style="display: none">just insert some gap</span></div>
+
+				<div class="row">
+					<div class="col-xs-12" >
+						<div style="background: #FFFFFF;">
+						
+							<div class="panel">
+								<div class="panel-heading text-center"><h4><span><i class="fas fa-user"></i></span> Account Details</h4></div>
+
+								<div class="panel-body">
+									<ul class="list-group">
+
+										<li class="list-group-item"><span><b>Email:</b></span> <%= user.email %></li>
+										<li class="list-group-item"><span><b>Mob:</b></span> <%= user.mobileNumber %></li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-8" style="background: #FFFFFF;">
+				<% if(items.length != 0){ %>
+				<div>
+				   <h4>My Wishlist (<span><%= items.length%></span>)</h4><hr>
+				   <% items.forEach(function(item){%>
+
+				   <div class="row">
+				   		<div class="col-xs-4">
+				   			<img src="http://www.amditc.com/images/shop.png" height="150px" width="150px">	
+				   		</div>
+
+				   		<div style="width:60px;"><span style="display: none">just insert some gap</span></div>
+
+				   		<div class="col-xs-4 " style="margin-top: 30px;">
+				   			<div><h5 style="color: blue"><%= item.productName%></h5></div>
+				   			<div><h5><%= item.description%></h5></div>
+				   			<div><h4>$ <%= item.price%></h4></div>
+				   			
+
+				   				<!-- Trigger the View modal with a button -->
+				   			<% if(item._id){ %>
+				   			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewModal<%=item._id%>" style="display: inline;">View</button>
+
+				   				<!-- Trigger the Edit modal with a button -->
+				   			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal<%=item._id%>" style="display: inline;">Edit</button>
+
+				   				<!-- aDD to cart button -->
+				   				<a type="button" class="btn btn-info" href="/big/cart/<%=item._id%>" style="display: inline;">Add to Cart</a>
+				   			<% } %>
+				   		</div>
+
+				   		<!-- delete button -->
+				   		<div class="col-xs-2 pull-right" style="margin-top: 50px">
+				   			<div>
+				   				<a href="http://localhost:4000/big/delete-item/<%=item._id%>" class="btn"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+				   			</div>
+				   		</div>
+
+
+				   			<!-- ======================View Modal ===================-->
+						<div id="viewModal<%=item._id%>" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+
+							    <!-- Modal content-->
+								<div class="modal-content">
+								     <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        <h4 class="modal-title">Product :<%= item.id%></h4>
+								    </div>
+								    <div class="modal-body">
+								    
+										<div><h5 style="color: blue;font-size: 20px;"><%= item.productName%></h5></div>
+										<div><img src="http://www.amditc.com/images/shop.png" height="150px" width="150px">	</div>
+				   						<div><h5><%= item.description%></h5></div>
+				   						<div><h4>$ <%= item.price%></h4></div>
+								    </div>
+							      
+							    </div>
+
+							</div>
+						</div>
+						<!-- ================================end of modal======================================================= -->
+				   	
+						
+
+							<!-- ======================Edit Modal ===================-->
+						<div id="editModal<%=item._id%>" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+
+							    <!-- Modal content-->
+								<div class="modal-content">
+								     <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        <h4 class="modal-title">Product :<%= item.id%></h4>
+								    </div>
+								    <div class="modal-body">
+								      
+										<form class="form-horizontal" action="/big/editProduct/<%= item._id%>" method="post" >             
+										                                
+										        <div class="form-group">
+										            <label for="productName">Product Name</label>
+										            <input type="text" class="form-control" name="productName" value="<%= item.productName%>">
+										        </div>
+
+										        <div class="form-group">
+										            <label for="description">Description</label>
+										            <input type="text" class="form-control" name="description" value="<%= item.description%>">
+										        </div>
+
+										        <div class="form-group">
+										            <label for="price">Price</label>
+										            <input type="text" class="form-control" name="price" value="<%= item.price%>">
+										        </div>
+
+										        <div class="form-group">
+										            <div class="col-md-offset-3 col-md-9">
+										                <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Submit</button>
+										            </div>
+										        </div>
+										                                         
+										</form>
+								    </div>
+							      
+							    </div>
+
+							</div>
+						</div>
+						<!-- ================================end of modal======================================================= -->
+
+				   </div><hr><!-- end of row -->
+
+					<%})%>
+				</div>
+				<% } else {%>
+				<div class="text-center">
+				   <img src="http://bossbrandsretail.com/front_store/images/store/wishlist-empty.jpg">
+				 </div>
+				<% } %>
+			</div>
+
+		</div>
+		<div class="row" style="margin-top: 30px;margin-bottom: 30px;">
+			<div class="col-xs-12">
+				<a href="http://localhost:4000/big/addProducts/screen" class="btn pull-right btn-success">Add Products</a>
+			</div>
+		</div>
+	</div>
+
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+</body>
+</html>
