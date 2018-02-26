@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
-
+var responseGenerator = require('./libs/responseGenerator');
 // module for maintaining sessions================================================================================
 const session = require('express-session');
 const logger = require('morgan');
@@ -71,6 +71,11 @@ fs.readdirSync('./app/controllers').forEach(function(file){
 
 
 
+
+
+
+
+
 //index view============================================================================================================
 app.get('/',function(req,res){
 
@@ -101,6 +106,34 @@ app.use(function(req,res,next){
 		next();
 	}
 });
+
+
+
+
+
+//app level error handling middlewares
+
+app.use('*',function(req,res,next){
+		
+	 res.statusCode = 404;
+     next("Page not found");
+});
+
+
+app.use(function(err,req,res,next){
+
+	if(res.statusCode == 404){
+		var myResponse = responseGenerator.generate(true,"404 Page Not Found,Go Back ",404,null);
+        res.send( {
+            message: myResponse.message,
+            
+        });
+	}
+	else{
+		next();
+	}
+});
+
 
 
 //srerver ============================================================================================================

@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 var productModel = mongoose.model('Product');
 var cartModel = mongoose.model('Cart');
 var userModel = mongoose.model('User');
-/*const Cart = require('./Cart');
-const cartSchema =mongoose.model('Cart').schema;*/
+
 
 var responseGenerator = require('./../../libs/responseGenerator');
 var auth = require('./../../auth/auth');
